@@ -1,0 +1,146 @@
+<html>
+<body>
+<center><h2>ONLINE EXAM</h2></center>
+<form id="examform">
+<center><p>register number:
+<input type="text" id="reg" required><br><br></p></center>
+<h3>Q1: What is the capital of Kerala?</h3>
+<input type="radio" name="q1" value="kochi"> Kochi<br>
+<input type="radio" name="q1" value="kozhikode"> Kozhikode<br>
+<input type="radio" name="q1" value="thiruvananthapuram"> Thiruvananthapuram<br>
+<input type="radio" name="q1" value="kollam"> Kollam<br>
+
+<h3>Q2: Which river is the longest in Kerala?</h3>
+<input type="radio" name="q2" value="periyar"> Periyar<br>
+<input type="radio" name="q2" value="bharathapuzha"> Bharathapuzha<br>
+<input type="radio" name="q2" value="pamba"> Pamba<br>
+<input type="radio" name="q2" value="chaliyar"> Chaliyar<br>
+
+<h3>Q3: Who is known as the "Father of the Malayalam language"?</h3>
+<input type="radio" name="q3" value="ezhuthachan"> Ezhuthachan<br>
+<input type="radio" name="q3" value="kumaran asan"> Kumaran Asan<br>
+<input type="radio" name="q3" value="vallathol narayana menon"> Vallathol Narayana Menon<br>
+<input type="radio" name="q3" value="ulloor"> Ulloor<br>
+
+<h3>Q4: Which Malayalam poet is known as "Mahakavi"?</h3>
+<input type="radio" name="q4" value="kumaran asan"> Kumaran Asan<br>
+<input type="radio" name="q4" value="ullor"> Ulloor<br>
+<input type="radio" name="q4" value="vallathol narayana menon"> Vallathol Narayana Menon<br>
+<input type="radio" name="q4" value="changampuzha"> Changampuzha<br>
+
+<h3>Q5: What is the official language of Kerala?</h3>
+<input type="radio" name="q5" value="english"> English<br>
+<input type="radio" name="q5" value="malayalam"> Malayalam<br>
+<input type="radio" name="q5" value="tamil"> Tamil<br>
+<input type="radio" name="q5" value="kannada"> Kannada<br>
+
+<h3>Q6: Who was the first Chief Minister of Kerala?</h3>
+<input type="radio" name="q6" value="c.achutha menon"> C. Achutha Menon<br>
+<input type="radio" name="q6" value="e.m.s.namboodiripad"> E. M. S. Namboodiripad<br>
+<input type="radio" name="q6" value="k karunakaran"> K. Karunakaran<br>
+<input type="radio" name="q6" value="a.k.antony"> A. K. Antony<br>
+
+<h3>Q7: What is the nickname of Kerala?</h3>
+<input type="radio" name="q7" value="the land of temples"> The Land of Temples<br>
+<input type="radio" name="q7" value="the gods own country"> God's Own Country<br>
+<input type="radio" name="q7" value="the spice island"> The Spice Island<br>
+<input type="radio" name="q7" value="the green state"> The Green State<br>
+
+<h3>Q8: Where is the Silent Valley National Park?</h3>
+<input type="radio" name="q8" value="idukki"> Idukki<br>
+<input type="radio" name="q8" value="palakkad"> Palakkad<br>
+<input type="radio" name="q8" value="wayanad"> Wayanad<br>
+<input type="radio" name="q8" value="kozhikode"> Kozhikode<br>
+
+<h3>Q9: Which is the smallest district in Kerala?</h3>
+<input type="radio" name="q9" value="alappuzha"> Alappuzha<br>
+<input type="radio" name="q9" value="kozhikode"> Kozhikode<br>
+<input type="radio" name="q9" value="malappuram"> Malappuram<br>
+<input type="radio" name="q9" value="idukki"> Idukki<br>
+
+<h3>Q10: Which is the highest peak in Kerala?</h3>
+<input type="radio" name="q10" value="anamudi"> Anamudi<br>
+<input type="radio" name="q10" value="chembra peak"> Chembra Peak<br>
+<input type="radio" name="q10" value="meeshapulimala"> Meeshapulimala<br>
+<input type="radio" name="q10" value="agasthyarkoodam"> Agasthyarkoodam<br>
+
+
+<button type="button" onclick="submitExm()">SUBMIT</button>
+<button type="reset">RESET</button>
+</form>
+<h3 id="result"></h3>
+
+<script>
+let timer = 600;
+const timerElement = document.createElement('h3');
+document.body.insertBefore(timerElement, document.body.firstChild);
+function updateTimer() {
+const minutes = Math.floor(timer / 60);
+const seconds = timer % 60;
+timerElement.textContent = `Time left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+if (timer > 0) {
+timer--;
+setTimeout(updateTimer, 1000);
+} else {
+  alert("time is up");
+  submitExm();
+}
+}
+updateTimer();
+
+function disableForm() {
+    const allElements = document.querySelectorAll('input, button');
+    allElements.forEach(el => el.disabled = true);
+}
+
+function submitExm() {
+    let score = 0;
+    let regNum = document.getElementById("reg").value;
+
+    if (regNum == "") {
+        alert("please enter your register number");
+        return;
+    }
+
+    let q1 = document.querySelector('input[name="q1"]:checked');
+    if (q1 && q1.value === "thiruvananthapuram") score++;
+
+    let q2 = document.querySelector('input[name="q2"]:checked');
+    if (q2 && q2.value === "periyar") score++;
+
+    let q3 = document.querySelector('input[name="q3"]:checked');
+    if (q3 && q3.value === "ezhuthachan") score++;
+
+    let q4 = document.querySelector('input[name="q4"]:checked');
+    if (q4 && q4.value === "vallathol narayana menon") score++;
+
+    let q5 = document.querySelector('input[name="q5"]:checked');
+    if (q5 && q5.value === "malayalam") score++;
+
+    let q6 = document.querySelector('input[name="q6"]:checked');
+    if (q6 && q6.value === "e.m.s.namboodiripad") score++;
+
+    let q7 = document.querySelector('input[name="q7"]:checked');
+    if (q7 && q7.value === "the gods own country") score++;
+
+    let q8 = document.querySelector('input[name="q8"]:checked');
+    if (q8 && q8.value === "palakkad") score++;
+
+    let q9 = document.querySelector('input[name="q9"]:checked');
+    if (q9 && q9.value === "alappuzha") score++;
+
+    let q10 = document.querySelector('input[name="q10"]:checked');
+    if (q10 && q10.value === "anamudi") score++;
+
+    disableForm();
+
+    localStorage.setItem("regNum", regNum);
+    localStorage.setItem("score", score);
+
+    window.location.href = "result.html";
+}
+</script>
+</body>
+</html>
+
+
